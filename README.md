@@ -1,30 +1,31 @@
-Steps to creat a new release
+Steps to creat a new release:
 
 1. Make sure you can build the RN Source Project
-2. Create the archives on the terminal command line. We will need 2 of them. 
+   
+3. Create the archives on the terminal command line. We will need 2 of them. 
    One for the device and one for sim. Make sure you are on the directory containing the xcworkspace. 
    Remove the files in the archives directory then run these commands. 
 
-   - Device Archive:
+   - For Device Archive:
 
    xcodebuild archive -workspace AllianceReactNativeBridge.xcworkspace -scheme AllianceReactNativeBridge -sdk iphoneos -archivePath "./archives/ios_devices.xcarchive" BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
 
-   - Sim Archive
+   - For Sim Archive
 
    xcodebuild archive -workspace AllianceReactNativeBridge.xcworkspace -scheme AllianceReactNativeBridge -sdk iphonesimulator -archivePath "./archives/ios_simulators.xcarchive" BUILD_LIBRARY_FOR_DISTRIBUTION=YES SKIP_INSTALL=NO
 
-   Then remove the xcframework in the build directory and then run 
+   Then remove the xcframework in the build directory and then run the command below o create the XCFramework for the bidge.
 
    xcodebuild -create-xcframework -framework ./archives/ios_devices.xcarchive/Products/Library/Frameworks/AllianceReactNativeBridge.framework -framework ./archives/ios_simulators.xcarchive/Products/Library/Frameworks/AllianceReactNativeBridge.framework -output build/AllianceReactNativeBridge.xcframework
 
-   If any thing in the source project changed you will need to create a new checksum hash. First compress into a zip file and run this command on it.
+   If anything in the source project changed you will need to create a new checksum hash. First compress into a zip file and run this command on it.
 
    swift package compute-checksum AllianceReactNativeBridge.xcframework.zip
 
-   We wil use this checksom later
+   We wil use this checksum later
 
 
-3. If Hermes changed at all then we will need to regrab it. If not then continue using the same as will have been using, no change in checksum. If hermes did 
+4. If Hermes changed at all then we will need to regrab it. If not then continue using the same as we have been using, no change in checksum. If hermes did 
   change then we will need to grab it from the pods directory. It is located in the 
 
   Pods/hermes-engine/destroot/Library/Frameworks/universal directory
@@ -52,12 +53,12 @@ Steps to creat a new release
 
 		This goes for both frameworks.
 
-		Likewise if the checksum changed, chenge the check sum value for both as well.
+		Likewise if the checksum changed, change the check sum value for both as well.
 
 		You can now save the package and move on to creating the new release.
 
 
-	b. Hit the tags like or use this url > https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/tags
+	b. Hit the tags link or use this url > https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/tags
 
 	   Switch to Releases and the tap 'Draft a new release'
 
