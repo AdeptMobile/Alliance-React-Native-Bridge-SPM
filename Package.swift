@@ -24,13 +24,13 @@ let package = Package(
         ),
         .binaryTarget(
             name: "AllianceReactNativeBridge",
-            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.0.0/AllianceReactNativeBridge.xcframework.zip",
-            checksum: "1bb649d049ee5ee60b383a69f304518f2bcbfb6629bb4ad0d5d9db92e96bc442"
+            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.0/AllianceReactNativeBridge.xcframework.zip",
+            checksum: "c9b5094f95e39d448bd7e8ddf7e4962bc9d2818004d32aaf40b1a5dc1eb24daa"
         ),
          .binaryTarget(
             name: "Hermes",
-            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.0.0/hermes.xcframework.zip",
-            checksum: "b0e8d9c39b0c95aa26d0e74b474d1ed0bf5e4cf24f2eabbc2feec2bbab989f1f"
+            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.0/hermes.xcframework.zip",
+            checksum: "cb99c771310d9cc03e7eeb1648b0282c3e993612905b5b32cf859a6ed7a68db8"
         )
     ]
 )
