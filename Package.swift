@@ -25,7 +25,7 @@ let package = Package(
         .binaryTarget(
             name: "AllianceReactNativeBridge",
             url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.2/AllianceReactNativeBridge.xcframework.zip",
-            checksum: "e5b4b1b699a4d7871f1c2cde0a8bf30708a03ae76f626fecc9df5652d4012feb"
+            checksum: "94485ef2aed4fa0e14c12e10cc39a04ee3c362492bd1bdfea70035788ad0fbf7"
         ),
          .binaryTarget(
             name: "Hermes",
