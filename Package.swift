@@ -12,25 +12,38 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "AllianceReactNativeBridge",
-            targets: ["AllianceReactNativeBridgeWrapper","Hermes"]),
+            targets: ["AllianceReactNativeBridgeWrapper","Hermes","Blaze"]),
     ],
     targets: [
         .target(
             name: "AllianceReactNativeBridgeWrapper",
             dependencies: [
-                .target(name: "AllianceReactNativeBridge")
+                .target(name: "AllianceReactNativeBridge"),
+                "BlazeResources"
             ],
             path: "AllianceReactNativeBridgeWrapper"
         ),
         .binaryTarget(
             name: "AllianceReactNativeBridge",
-            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.16/AllianceReactNativeBridge.xcframework.zip",
-            checksum: "eba91a948591394645395f31d273f93d68e8d88057c296bf35c87bbc339efe99"
+            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.17/AllianceReactNativeBridge.xcframework.zip",
+            checksum: "e4cfb7b11f2a7e9c82f4aa39c1f356583952c09ffbe58f7044e86eb56e23ef4d"
         ),
          .binaryTarget(
             name: "Hermes",
-            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.16/hermes.xcframework.zip",
-            checksum: "194fa1d96ee24f8fe5a1e2e5a564d54110326f718d58829d9b97eab4fc358efc"
-        )
+            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.17/hermes.xcframework.zip",
+            checksum: "b95292f9b5f801a976cfb30dc227b2694803239bacf88f695b80aaadf1f4bfb5"
+        ),
+        .binaryTarget(
+           name: "Blaze",
+           url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.17/BlazeSDK.xcframework.zip",
+           checksum: "124258a9ab4252a9ec484920697eba4f8d7c7e4798b9794a65dbcfaa24450977"
+       ),
+       .target(
+           name: "BlazeResources",
+           resources: [
+               .copy("Resources/blaze-rtn-sdk-bundle.bundle")
+           ],
+           path: "Resources"
+       )
     ]
 )
