@@ -19,7 +19,6 @@ let package = Package(
             name: "AllianceReactNativeBridgeWrapper",
             dependencies: [
                 .target(name: "AllianceReactNativeBridge"),
-                "BlazeResources"
             ],
             path: "AllianceReactNativeBridgeWrapper"
         ),
@@ -34,16 +33,9 @@ let package = Package(
             checksum: "b95292f9b5f801a976cfb30dc227b2694803239bacf88f695b80aaadf1f4bfb5"
         ),
         .binaryTarget(
-           name: "Blaze",
+           name: "BlazeSDK",
            url: "https://github.com/AdeptMobile/Alliance-React-Native-Bridge-SPM/releases/download/1.1.17/BlazeSDK.xcframework.zip",
            checksum: "124258a9ab4252a9ec484920697eba4f8d7c7e4798b9794a65dbcfaa24450977"
-       ),
-       .target(
-           name: "BlazeResources",
-           resources: [
-               .copy("Resources/blaze-rtn-sdk-bundle.bundle")
-           ],
-           path: "Resources"
        )
     ]
 )
