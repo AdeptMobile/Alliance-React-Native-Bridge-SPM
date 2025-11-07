@@ -97,15 +97,45 @@ OLD_VERSION=$(grep -oE 'releases/download/[^/]+' "$PACKAGE_FILE" | sed 's|releas
 sed -i '' "s|releases/download/$OLD_VERSION|releases/download/$NEW_VERSION|g" "$PACKAGE_FILE"
 
 if [ -n "$CHECKSUMS_ALLIANCE" ]; then
-    perl -i -pe "s/(name: \"AllianceReactNativeBridge\".*?\n.*?url:.*?\n.*?checksum: \")[^\"]+(\")/\${1}$CHECKSUMS_ALLIANCE\${2}/s" "$PACKAGE_FILE"
+    awk -v checksum="$CHECKSUMS_ALLIANCE" '
+        /\.binaryTarget\(/ { in_binary=1 }
+        in_binary && /name: "AllianceReactNativeBridge"/ { in_target=1 }
+        in_target && /checksum:/ {
+            sub(/checksum: "[^"]*"/, "checksum: \"" checksum "\"")
+            in_target=0
+            in_binary=0
+        }
+        /^[[:space:]]*\)/ && in_binary { in_binary=0; in_target=0 }
+        { print }
+    ' "$PACKAGE_FILE" > "$PACKAGE_FILE.tmp" && mv "$PACKAGE_FILE.tmp" "$PACKAGE_FILE"
 fi
 
 if [ -n "$CHECKSUMS_HERMES" ]; then
-    perl -i -pe "s/(name: \"Hermes\".*?\n.*?url:.*?\n.*?checksum: \")[^\"]+(\")/\${1}$CHECKSUMS_HERMES\${2}/s" "$PACKAGE_FILE"
+    awk -v checksum="$CHECKSUMS_HERMES" '
+        /\.binaryTarget\(/ { in_binary=1 }
+        in_binary && /name: "Hermes"/ { in_target=1 }
+        in_target && /checksum:/ {
+            sub(/checksum: "[^"]*"/, "checksum: \"" checksum "\"")
+            in_target=0
+            in_binary=0
+        }
+        /^[[:space:]]*\)/ && in_binary { in_binary=0; in_target=0 }
+        { print }
+    ' "$PACKAGE_FILE" > "$PACKAGE_FILE.tmp" && mv "$PACKAGE_FILE.tmp" "$PACKAGE_FILE"
 fi
 
 if [ -n "$CHECKSUMS_BLAZE" ]; then
-    perl -i -pe "s/(name: \"BlazeSDK\".*?\n.*?url:.*?\n.*?checksum: \")[^\"]+(\")/\${1}$CHECKSUMS_BLAZE\${2}/s" "$PACKAGE_FILE"
+    awk -v checksum="$CHECKSUMS_BLAZE" '
+        /\.binaryTarget\(/ { in_binary=1 }
+        in_binary && /name: "BlazeSDK"/ { in_target=1 }
+        in_target && /checksum:/ {
+            sub(/checksum: "[^"]*"/, "checksum: \"" checksum "\"")
+            in_target=0
+            in_binary=0
+        }
+        /^[[:space:]]*\)/ && in_binary { in_binary=0; in_target=0 }
+        { print }
+    ' "$PACKAGE_FILE" > "$PACKAGE_FILE.tmp" && mv "$PACKAGE_FILE.tmp" "$PACKAGE_FILE"
 fi
 
 echo ""
